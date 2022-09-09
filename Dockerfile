@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y python2 python2-dev iptables dnsmasq um
 
 RUN curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py && python2 get-pip.py && rm get-pip.py
 
+RUN mkdir -p /etc/udev/rules.d
+RUN echo "KERNEL==\"tun\", GROUP=\"netdev\", MODE=\"0660\", OPTIONS+=\"static_node=net/tun\"" > /etc/udev/rules.d/zzz_net_tun.rules
+
 COPY docker-image-config/docker-startup.sh switchedrelay.py limiter.py requirements.txt /opt/websockproxy/
 COPY docker-image-config/dnsmasq/interface docker-image-config/dnsmasq/dhcp /etc/dnsmasq.d/
 
