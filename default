@@ -1,8 +1,8 @@
 map $server_port $upstream {
-    "~(\d)(\d)(\d?)(\d?)$" 10.5.$1.$2$3$4:5432;
+    "~(\d)(\d\d\d)$" 10.5.$1.$2:5432;
 }
 server {
-        listen 6000-6254 so_keepalive=on;
+        listen 6001-6254 so_keepalive=on;
          
         #allow <ip_address>;
         #deny all;
