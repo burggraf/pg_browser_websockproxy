@@ -22,7 +22,6 @@ RUN apt-get install -y nano && apt-get install -y nginx
 
 COPY nginx.conf /etc/nginx
 COPY default /etc/nginx/sites-enabled
-RUN nginx
 #EXPOSE 80
 
 CMD /opt/websockproxy/docker-startup.sh
